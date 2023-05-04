@@ -10,9 +10,18 @@ import { DesktopHeader } from './components/DesktopHeader';
 import { themes } from './styling/themes';
 import { EpisodePage } from './screens/EpisodePage';
 import { AboutPage } from './screens/AboutPage';
+import { Home } from './screens/Home';
 
-function App() {
+function Root() {
   const [theme, setTheme] = React.useState('Light');
+  const EpisodeHelper = (props: any) => {
+    console.log(props);
+    return <EpisodePage trackId={props.match.params.id}/>;
+  };
+
+  const numberOfSeasons = 6;
+
+  const [season, setSeason] = React.useState<number>(1);
 
   return (
     <Router>
@@ -22,7 +31,10 @@ function App() {
         </Hidden>
         <Switch>
           <Route exact path="/">
-            <EpisodePage />
+            <Home />
+          </Route>
+          <Route path="/track/:episode">
+            {EpisodeHelper}
           </Route>
           <Route path="/faq">
             <AboutPage />
@@ -33,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Root;
