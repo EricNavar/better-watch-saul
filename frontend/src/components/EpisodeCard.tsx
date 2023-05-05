@@ -21,7 +21,7 @@ export function EpisodeCard(episode: Episode): JSX.Element {
   return (
     <VideoLink to={`/track/${episode._id}`}>
       <img
-        src={episode.thumbnail}
+        src={`https://d34lypc6o619vf.cloudfront.net/${episode.season_number}.${episode.episode_number}.jpg`}
         alt='thumbnail'
         style={{ borderRadius: 6 }}
         height="180px"

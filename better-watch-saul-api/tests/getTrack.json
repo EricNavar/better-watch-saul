@@ -1,0 +1,5 @@
+{
+    "resource": "/api/v1/tracks/1",
+    "path": "/api/v1/tracks/1",
+    "httpMethod": "GET"
+}

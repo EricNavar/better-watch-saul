@@ -17,13 +17,13 @@ const EpisodePage = (props: {trackId: string}) => {
             <video width="700px" height="400px" controls>
                 <source src={episode.src} type="video/mp4" />
             </video>
-            <Typography variant='body1'>
+            <Typography variant='subtitle1' style={{fontSize: 18}}>
                 Season {episode.season_number} Episode {episode.episode_number} 
             </Typography>
-            <br/>
-            <Typography component='h2' variant='h6' >
-                Season {episode.season_number}
+            <Typography variant='body1'>
+                {episode.description}
             </Typography>
+            <br/>
             <EpisodesGroup defaultSeason={episode.season_number}/>
         </div>
     );

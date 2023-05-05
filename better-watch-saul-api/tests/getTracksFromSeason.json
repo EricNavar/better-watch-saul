@@ -1,0 +1,5 @@
+{
+    "resource": "/api/v1/tracks/season/1",
+    "path": "/api/v1/tracks/season/1",
+    "httpMethod": "GET"
+}

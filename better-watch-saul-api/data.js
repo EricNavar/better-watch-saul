@@ -1,6 +1,4 @@
-import { Episode } from "./commonTypes";
-
-export const episodes: Episode[] = [
+module.exports.episodes = [
     {
         season_number: 1,
         description: 'Jimmy McGill, a struggling lawyer, tries to make a name for himself in the legal world, while dealing with personal and financial challenges.',
