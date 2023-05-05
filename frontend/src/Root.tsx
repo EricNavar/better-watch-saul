@@ -15,7 +15,6 @@ import { Home } from './screens/Home';
 function Root() {
   const [theme, setTheme] = React.useState('Light');
   const EpisodeHelper = (props: any) => {
-    console.log(props);
     return <EpisodePage trackId={props.match.params.id}/>;
   };
 
@@ -29,7 +28,7 @@ function Root() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/track/:episode">
+          <Route path="/track/:id">
             {EpisodeHelper}
           </Route>
           <Route path="/faq">

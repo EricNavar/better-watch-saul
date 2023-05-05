@@ -1,12 +1,25 @@
 import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { episodes } from '../data';
 import { EpisodeCard } from './EpisodeCard';
 import { FormControl, InputLabel } from '@mui/material';
+import { Episode } from '../commonTypes';
+import { getEpisodesFromSeason } from '../util';
 
-export function EpisodesGroup(props: {defaultSeason: number}) {
+export function EpisodesGroup(props: { defaultSeason: number }) {
   const [season, setSeason] = React.useState<number>(props.defaultSeason);
+  const [episodes, setEpisodes] = React.useState<Episode[]>([]);
+
+  React.useEffect(() => {
+    const fetchEpisodes = async () => {
+      let response;
+      response = await getEpisodesFromSeason(season);
+      if (response && response.data) {
+        setEpisodes(response.data);
+      }
+    };
+    fetchEpisodes();
+  }, [season]);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSeason(Number(event.target.value));
@@ -16,7 +29,7 @@ export function EpisodesGroup(props: {defaultSeason: number}) {
 
   return (
     <div>
-      <FormControl style={{marginBottom: 20, marginTop: 20}}>
+      <FormControl style={{ marginBottom: 20, marginTop: 20 }}>
         <InputLabel id="demo-controlled-open-select-label">Season</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -24,7 +37,7 @@ export function EpisodesGroup(props: {defaultSeason: number}) {
           defaultValue='1'
           value={String(season)}
           label="Season"
-          style={{width:200}}
+          style={{ width: 200 }}
           onChange={handleChange}
         >
           {Array.from(Array(numberOfSeasons).keys()).map((season) =>
@@ -32,12 +45,12 @@ export function EpisodesGroup(props: {defaultSeason: number}) {
           )}
         </Select>
       </FormControl>
-      <br/>
-      <div style={{display: 'flex', flexWrap:'wrap'}}>
-        {episodes.filter(episode => episode.season_number == season).map((episode, index) =>
+      <br />
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {episodes.map((episode, index) =>
           <EpisodeCard {...episode} key={index} />
         )}
       </div>
     </div>
   );
-}
+};

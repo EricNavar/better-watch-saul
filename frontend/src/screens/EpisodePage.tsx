@@ -3,10 +3,25 @@ import BetterWatchSaulLogo from '../assets/better-watch-saul-logo.png';
 import { Typography } from '@mui/material';
 import { EpisodesGroup } from '../components/EpisodesGroup';
 import { Episode } from '../commonTypes';
-import { episodes } from '../data';
+import { getEpisode } from '../util';
 
 const EpisodePage = (props: {trackId: string}) => {
-    const [episode, setEpisode] = React.useState<Episode>(episodes[0]);
+    const [episode, setEpisode] = React.useState<Episode|null>(null);
+
+    React.useEffect(() => {
+      const fetchEpisodes = async () => {
+        let response;
+        response = await getEpisode('4');
+        console.log(response.data);
+        if (response && response.data && response.data)
+            setEpisode(response.data);
+      };
+      fetchEpisodes();
+    }, [props]);
+
+    if (episode === null) {
+        return <Typography variant='body1'>Loading...</Typography>
+    }
 
     return (
         <div style={{padding: 20}}>
