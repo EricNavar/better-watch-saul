@@ -1,6 +1,6 @@
 import React from 'react';
 import BetterWatchSaulLogo from '../assets/better-watch-saul-logo.png';
-import { Typography, styled } from '@mui/material';
+import { Typography } from '@mui/material';
 import { EpisodesGroup } from '../components/EpisodesGroup';
 import { Episode } from '../commonTypes';
 import { getEpisode } from '../util';
