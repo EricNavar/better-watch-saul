@@ -1,17 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const {
+    getTrack,
+    getTracksFromSeason
+} = require('./controller');
 
-router.route("/").get((req, res, next) => {
-  return res.status(200).json({
-    message: "Hello from root!",
-  });
-});
+router.route("/:id").get(getTrack);
 
-router.route("/path").get((req, res, next) => {
-  return res.status(200).json({
-    message: "Hello from path!",
-  });
-});
+router.route("/season/:id").get(getTracksFromSeason);
 
 // route.use((req, res, next) => {
 //   return res.status(404).json({
