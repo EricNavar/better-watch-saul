@@ -7,14 +7,14 @@ const EpisodeSchema = new mongoose.Schema({
     trim: true,
   },
   season_number: {
-    type: Boolean,
+    type: Number,
     required: [true, 'must provide season_number'],
   },
   episode_number: {
-    type: Boolean,
+    type: Number,
     required: [true, 'must provide episode_number'],
   },
-  episode_number: {
+  description: {
     type: String,
     required: [true, 'must provide description'],
   },

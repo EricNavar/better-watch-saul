@@ -1,25 +1,54 @@
-const {episodes} = require('../data');
+const Episode = require('../models/episode');
+const asyncWrapper = require('../middleware/async');
+const { createCustomError } = require('../errors/custom-error');
 
-const getTrack = (req, res, next) => {
-  const { id: trackId } = req.params;
-  const tracks = episodes.filter(episode => episode._id === trackId);
-  if (tracks.length == 0) {
-    return res
-      .status(404)
-      .json({ success: false, msg: `no tracks with id ${trackId}` })
-  }
-  return res.status(200).json(tracks[0]);
-};
+const getTracksFromSeason = asyncWrapper(async (req, res) => {
+  const { id } = req.params;
+  const episodes = await Episode.find({ season_number: id })
+  res.status(200).json({ episodes })
+});
 
-const getTracksFromSeason = (req, res, next) => {
-  const { id: seasonId } = req.params;
-  const tracks = episodes.filter(episode => episode.season_number == seasonId);
-  if (tracks.length == 0) {
-    return res
-      .status(404)
-      .json({ success: false, msg: `no tracks from season ${seasonId}` })
+const getTrack = asyncWrapper(async (req, res, next) => {
+  const { id: episodeID } = req.params
+  const episode = await Episode.findOne({ _id: episodeID })
+  if (!episode) {
+    return next(createCustomError(`No episode with id : ${episodeID}`, 404))
   }
-  return res.status(200).json({ data: tracks });
+
+  res.status(200).json({ episode })
+});
+
+module.exports = {
+  getTracksFromSeason,
+  getTrack,
 }
 
-module.exports = {getTrack, getTracksFromSeason};
+
+// const updateEpisode = asyncWrapper(async (req, res, next) => {
+//   const { id: episodeID } = req.params
+
+//   const episode = await Episode.findOneAndUpdate({ _id: episodeID }, req.body, {
+//     new: true,
+//     runValidators: true,
+//   })
+
+//   if (!episode) {
+//     return next(createCustomError(`No episode with id : ${episodeID}`, 404))
+//   }
+
+//   res.status(200).json({ episode })
+// });
+
+// const deleteEpisode = asyncWrapper(async (req, res, next) => {
+//   const { id: episodeID } = req.params
+//   const episode = await Episode.findOneAndDelete({ _id: episodeID })
+//   if (!episode) {
+//     return next(createCustomError(`No episode with id : ${episodeID}`, 404))
+//   }
+//   res.status(200).json({ episode })
+// });
+
+// const createEpisode = asyncWrapper(async (req, res) => {
+//   const episode = await Episode.create(req.body)
+//   res.status(201).json({ episode })
+// });
