@@ -1,6 +1,6 @@
 const serverless = require("serverless-http");
 const express = require("express");
-const tracks = require('./routes');
+const tracks = require('./routes/episodes');
 const cors = require('cors');
 const connectDB = require('./connect');
 require('dotenv').config();

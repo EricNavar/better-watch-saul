@@ -1,4 +1,4 @@
-const {episodes} = require('./data');
+const {episodes} = require('../data');
 
 const getTrack = (req, res, next) => {
   const { id: trackId } = req.params;
