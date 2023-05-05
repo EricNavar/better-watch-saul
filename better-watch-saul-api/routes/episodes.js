@@ -3,7 +3,7 @@ const router = express.Router();
 const {
     getTrack,
     getTracksFromSeason
-} = require('../controllers.js/episodes');
+} = require('../controllers/episodes');
 
 router.route("/:id").get(getTrack);
 

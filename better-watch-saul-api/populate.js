@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const connectDB = require('./connect');
-const Episode = require('./models/episode');
+const Episode = require('./models/Episode');
 
 const {episodes} = require('./data');
 

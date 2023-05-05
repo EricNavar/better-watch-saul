@@ -1,4 +1,4 @@
-const Episode = require('../models/episode');
+const Episode = require('../models/Episode');
 const asyncWrapper = require('../middleware/async');
 const { createCustomError } = require('../errors/custom-error');
 

@@ -11,10 +11,10 @@ const EpisodePage = (props: { trackId: string }) => {
     React.useEffect(() => {
         const fetchEpisodes = async () => {
             let response;
-            response = await getEpisode('4');
+            response = await getEpisode(props.trackId);
             console.log(response.data);
-            if (response && response.data && response.data)
-                setEpisode(response.data);
+            if (response && response.data && response.data.episode)
+                setEpisode(response.data.episode);
         };
         fetchEpisodes();
     }, [props]);
