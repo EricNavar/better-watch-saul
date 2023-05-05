@@ -56,5 +56,5 @@ export function EpisodesGroup(props: { defaultSeason: number }) {
       </div>
     );
 
-  return <Typography>Loading...</Typography>;
+  return <Typography color="textPrimary">Loading...</Typography>;
 };

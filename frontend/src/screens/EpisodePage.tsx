@@ -1,9 +1,15 @@
 import React from 'react';
 import BetterWatchSaulLogo from '../assets/better-watch-saul-logo.png';
-import { Typography } from '@mui/material';
+import { Typography, styled } from '@mui/material';
 import { EpisodesGroup } from '../components/EpisodesGroup';
 import { Episode } from '../commonTypes';
 import { getEpisode } from '../util';
+
+const VideoPlayer = styled('video')`
+    width: 800px;
+    height: 450px;
+    max-width: 100%;
+`;
 
 const EpisodePage = (props: { trackId: string }) => {
     const [episode, setEpisode] = React.useState<Episode | null>(null);
@@ -20,7 +26,7 @@ const EpisodePage = (props: { trackId: string }) => {
     }, [props]);
 
     if (episode === null) {
-        return <Typography variant='body1'>Loading...</Typography>
+        return <Typography color="textPrimary" variant='body1'>Loading...</Typography>
     }
 
     return (
@@ -29,18 +35,18 @@ const EpisodePage = (props: { trackId: string }) => {
                 <img src={BetterWatchSaulLogo} alt="Better Watch Saul" width="250px" />
             </a>
             <br />
-            <video
-                width="700px"
-                height="400px"
+            <VideoPlayer
+                width="800px"
+                height="450px"
                 controls
                 poster={`https://d34lypc6o619vf.cloudfront.net/${episode.season_number}.${episode.episode_number}.jpg`}
             >
                 <source src={episode.src} type="video/mp4" />
-            </video>
-            <Typography variant='subtitle1' style={{ fontSize: 18 }}>
+            </VideoPlayer>
+            <Typography color="textPrimary" variant='subtitle1' style={{ fontSize: 18, marginBottom: 8 }}>
                 Season {episode.season_number} Episode {episode.episode_number}
             </Typography>
-            <Typography variant='body1'>
+            <Typography color="textPrimary" variant='body1'>
                 {episode.description}
             </Typography>
             <br />

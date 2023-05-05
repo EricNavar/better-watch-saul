@@ -27,7 +27,7 @@ export function EpisodeCard(episode: Episode): JSX.Element {
         height="180px"
         width="320px"
       />
-      <Typography variant='body1'>
+      <Typography variant='body1' color="textPrimary">
         Episode {episode.episode_number}: {episode.title}
       </Typography>
     </VideoLink>

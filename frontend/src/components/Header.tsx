@@ -84,11 +84,11 @@ function ElevationScroll(props: ElevatorScrollProps): JSX.Element {
   });
 }
 
-type DesktopHeaderProps = {
+type HeaderProps = {
   theme: string;
   setTheme: (newTheme: string) => void;
 };
-function DesktopHeader(props: DesktopHeaderProps): JSX.Element {
+function Header(props: HeaderProps): JSX.Element {
   const handleChange = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
     newTheme: string
@@ -126,4 +126,4 @@ function DesktopHeader(props: DesktopHeaderProps): JSX.Element {
   );
 }
 
-export { DesktopHeader };
+export { Header };
