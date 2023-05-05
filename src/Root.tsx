@@ -19,10 +19,6 @@ function Root() {
     return <EpisodePage trackId={props.match.params.id}/>;
   };
 
-  const numberOfSeasons = 6;
-
-  const [season, setSeason] = React.useState<number>(1);
-
   return (
     <Router>
       <ThemeProvider theme={themes[theme]}>

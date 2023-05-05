@@ -9,7 +9,7 @@ const Home = () => {
                 <img src={BetterWatchSaulLogo} alt="Better Watch Saul" width="250px"/>
             </a>
             <br />
-            <EpisodesGroup />
+            <EpisodesGroup defaultSeason={1}/>
         </div>
     );
 }

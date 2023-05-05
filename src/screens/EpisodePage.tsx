@@ -1,39 +1,32 @@
 import React from 'react';
 import BetterWatchSaulLogo from '../assets/better-watch-saul-logo.png';
 import { Typography } from '@mui/material';
+import { EpisodesGroup } from '../components/EpisodesGroup';
+import { Episode } from '../commonTypes';
 import { episodes } from '../data';
-import { EpisodeCard } from '../components/EpisodeCard';
 
 const EpisodePage = (props: {trackId: string}) => {
-    const episode = 1;
-    const season = 1;
-
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    const moreEpisodes = episodes.filter((episode)=>episode.season_number = season);
+    const [episode, setEpisode] = React.useState<Episode>(episodes[0]);
 
     return (
-        <div style={{width: 300}}>
+        <div style={{padding: 20}}>
             <a href='/'>
                 <img src={BetterWatchSaulLogo} alt="Better Watch Saul" width="250px"/>
             </a>
             <br />
             <video width="700px" height="400px" controls>
-                <source src="" type="video/mp4" />
+                <source src={episode.src} type="video/mp4" />
             </video>
             <Typography variant='body1'>
-                Season {season} Episode {episode} 
+                Season {episode.season_number} Episode {episode.episode_number} 
             </Typography>
             <br/>
             <Typography component='h2' variant='h6' >
-                More episodes in Season {season}
+                Season {episode.season_number}
             </Typography>
-            {moreEpisodes.map((episode, index) => 
-                <EpisodeCard {...episode} key={index}/>
-            )}
+            <EpisodesGroup defaultSeason={episode.season_number}/>
         </div>
     );
 }
 
 export {EpisodePage};
-
-//https://d34lypc6o619vf.cloudfront.net/bcs%205-1.mp4

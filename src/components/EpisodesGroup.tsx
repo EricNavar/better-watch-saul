@@ -5,14 +5,14 @@ import { episodes } from '../data';
 import { EpisodeCard } from './EpisodeCard';
 import { FormControl, InputLabel } from '@mui/material';
 
-export function EpisodesGroup() {
-  const [season, setSeason] = React.useState<number>(1);
+export function EpisodesGroup(props: {defaultSeason: number}) {
+  const [season, setSeason] = React.useState<number>(props.defaultSeason);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSeason(Number(event.target.value));
   };
 
-  const numberOfSeasons = 5;
+  const numberOfSeasons = 6;
 
   return (
     <div>
@@ -33,9 +33,11 @@ export function EpisodesGroup() {
         </Select>
       </FormControl>
       <br/>
-      {episodes.map((episode, index) =>
-        <EpisodeCard {...episode} key={index} />
-      )}
+      <div style={{display: 'flex', flexWrap:'wrap'}}>
+        {episodes.filter(episode => episode.season_number == season).map((episode, index) =>
+          <EpisodeCard {...episode} key={index} />
+        )}
+      </div>
     </div>
   );
 }
