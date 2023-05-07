@@ -8,7 +8,7 @@ This isn't piracy because I only did it to practice S3 and Cloudfront and MongoD
 
 ## Architecture
 
-![Better Watch Saul](https://user-images.githubusercontent.com/32403644/236652373-8c39d024-fdb9-40c0-990a-4e0d2185ac44.png)
+![Better Watch Saul(1)](https://user-images.githubusercontent.com/32403644/236652820-5f54e79f-6707-4f30-819c-e413ff975d6d.png)
 
 - This is a MERN stack web app. The backend is deployed on AWS Lambda and API Gateway with the Serverless framework and the frontend is deployed on AWS Amplify.
 - Serverless creates a cloudformation stack which creates a lambda function accessible by api gateway
