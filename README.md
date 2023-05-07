@@ -24,3 +24,7 @@ in `/better-watch-saul-api` directory, type
 `serverless invoke local --function api --path="tests/getTrack.json"`
 
 `serverless invoke local --function api --path="tests/getTracksFromSeason.json"`
+
+## Contributing
+
+This repository is open to contributions
